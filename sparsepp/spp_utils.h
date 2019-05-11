@@ -354,7 +354,7 @@ static inline uint32_t s_spp_popcount_default(uint64_t x) SPP_NOEXCEPT
     return (x * h01)>>56;           // returns left 8 bits of x + (x<<8) + (x<<16) + (x<<24)+...
 }
 
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(__linux__)
     static inline uint32_t count_trailing_zeroes(size_t v) SPP_NOEXCEPT
     {
         size_t x = (v & -v) - 1;
