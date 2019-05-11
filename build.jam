@@ -1,0 +1,2 @@
+path-constant sparsepp_headers : . ;
+explicit_alias PUB : : : : <include>$(sparsepp_headers) ;
