@@ -354,7 +354,7 @@ static inline uint32_t s_spp_popcount_default(uint64_t x) SPP_NOEXCEPT
     return (x * h01)>>56;           // returns left 8 bits of x + (x<<8) + (x<<16) + (x<<24)+...
 }
 
-#if defined(__APPLE__) || defined(__linux__)
+//#if defined(__APPLE__) || defined(__linux__)
     static inline uint32_t count_trailing_zeroes(size_t v) SPP_NOEXCEPT
     {
         size_t x = (v & -v) - 1;
@@ -367,17 +367,17 @@ static inline uint32_t s_spp_popcount_default(uint64_t x) SPP_NOEXCEPT
         // sadly sizeof() required to build on macos 
         return sizeof(size_t) == 8 ? s_spp_popcount_default((uint64_t)v) : s_spp_popcount_default((uint32_t)v);
     }
-#else
-    static inline uint32_t count_trailing_zeroes(size_t v) SPP_NOEXCEPT
-    {
-        return s_spp_popcount_default((v & -(intptr_t)v) - 1);
-    }
-
-    static inline uint32_t s_popcount(size_t v) SPP_NOEXCEPT
-    {
-        return s_spp_popcount_default(v);
-    }
-#endif
+//#else
+//    static inline uint32_t count_trailing_zeroes(size_t v) SPP_NOEXCEPT
+//    {
+//        return s_spp_popcount_default((v & -(intptr_t)v) - 1);
+//    }
+//
+//    static inline uint32_t s_popcount(size_t v) SPP_NOEXCEPT
+//    {
+//        return s_spp_popcount_default(v);
+//    }
+//#endif
 
 // -----------------------------------------------------------
 // -----------------------------------------------------------
