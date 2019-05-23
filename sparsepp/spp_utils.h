@@ -357,7 +357,7 @@ static inline uint32_t s_spp_popcount_default(uint64_t x) SPP_NOEXCEPT
 //#if defined(__APPLE__) || defined(__linux__)
     static inline uint32_t count_trailing_zeroes(size_t v) SPP_NOEXCEPT
     {
-        size_t x = (v & -v) - 1;
+        size_t x = (v & (v-1)) - 1;
         // sadly sizeof() required to build on macos 
         return sizeof(size_t) == 8 ? s_spp_popcount_default((uint64_t)x) : s_spp_popcount_default((uint32_t)x);
     }
