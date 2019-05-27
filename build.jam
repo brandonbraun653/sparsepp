@@ -1,2 +1,24 @@
+
+# ====================================================
+# Local Rules 
+# ====================================================
+local rule explicit_alias ( name : sources * : requirements * : default-build * : usage-requirements * )
+    {
+    alias $(name) : $(sources) : $(requirements) : $(default-build) : $(usage-requirements) ;
+    explicit $(name) ;
+    }
+
+# ====================================================
+# Local Resources 
+# ====================================================
 path-constant sparsepp_headers : . ;
+
+# ====================================================
+# Project Definition
+# ====================================================
+project Sparse++ : usage-requirements <include>$(sparsepp_headers) ;
+
+# ====================================================
+# Public Library Components
+# ====================================================
 explicit_alias PUB : : : : <include>$(sparsepp_headers) ;
